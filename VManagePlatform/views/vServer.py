@@ -20,6 +20,7 @@ def listVmServer(request):
 @login_required
 @permission_required('VManagePlatform.read_vmserver',login_url='/noperm/')
 def viewVmServer(request,id):
+    print(id,"-------------------")
     try:
         vServer = VmServer.objects.get(id=id)
     except:
