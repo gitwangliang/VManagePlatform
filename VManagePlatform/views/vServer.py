@@ -24,6 +24,7 @@ def viewVmServer(request,id):
         vServer = VmServer.objects.get(id=id)
     except:
         return render_to_response('404.html',context_instance=RequestContext(request))
+    print vServer.server_ip,vServer.username, vServer.passwd, vServer.vm_type
     VMS = LibvirtManage(vServer.server_ip,vServer.username, vServer.passwd, vServer.vm_type)
     SERVER = VMS.genre(model='server') 
     if SERVER:vmServer =  SERVER.getVmServerInfo()
@@ -33,6 +34,7 @@ def viewVmServer(request,id):
         vmServer['server_ip'] = vServer.server_ip
         vmServer['name'] = vServer.hostname
     vmStorage = SERVER.getVmStorageInfo()
+    print "vmStorage"
     vmInstance = SERVER.getVmInstanceInfo(server_ip=vServer.server_ip)
     vmIns = vmInstance.get('active').get('number') + vmInstance.get('inactice').get('number')
     vmInsList = []
