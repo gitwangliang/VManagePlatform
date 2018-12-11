@@ -28,6 +28,7 @@ def viewVmServer(request,id):
     print vServer.server_ip,vServer.username, vServer.passwd, vServer.vm_type
     VMS = LibvirtManage(vServer.server_ip,vServer.username, vServer.passwd, vServer.vm_type)
     SERVER = VMS.genre(model='server')
+    print(id, "==============")
     if SERVER:vmServer =  SERVER.getVmServerInfo()
     else:return render_to_response('404.html',context_instance=RequestContext(request))
     if vmServer:
