@@ -479,6 +479,7 @@ class VMServer(VMBase):
         try:               
             vMdisk = self.conn.listStoragePools()
             for vM in vMdisk:
+                print(vm)
                 pool = self.conn.storagePoolLookupByName(vM)
                 stgvols = pool.listVolumes()
                 print("stgvols",stgvols)
