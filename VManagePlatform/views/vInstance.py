@@ -269,7 +269,7 @@ def modfInstance(request,id):
                         return  JsonResponse({"code":500,"data":None,"msg":"不能设置虚拟机CPU超过宿主机机器的物理CPU个数"})     
             #调整带宽
             elif  request.POST.get('device') == 'bandwidth':
-                SSH = BRManage(hostname=vServer.server_ip,port=22)
+                SSH = BRManage(hostname=vServer.server_ip,port=1722)
                 OVS = SSH.genre(model='ovs')
                 mode = INSTANCE.getInterFace(instance,request.POST.get('netk_name'))
                 if request.POST.get('op') == 'attach': 

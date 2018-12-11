@@ -34,7 +34,7 @@ def configNetwork(request,id):
             VMS = LibvirtManage(vServer.server_ip,vServer.username, vServer.passwd, vServer.vm_type)
             NETWORK = VMS.genre(model='network')
             if request.POST.get('network-mode') == 'bridge':
-                SSH = BRManage(hostname=vServer.server_ip,port=22)
+                SSH = BRManage(hostname=vServer.server_ip,port=1722)
                 OVS = SSH.genre(model='ovs')
                 BRCTL = SSH.genre(model='brctl')
                 if NETWORK and OVS:
@@ -97,7 +97,7 @@ def handleNetwork(request,id):
                 mode = NETWORK.getNetworkType(netk_name=netkName).get('mode')
                 if op == 'delete':
                     try:
-                        SSH = BRManage(hostname=vServer.server_ip,port=22)
+                        SSH = BRManage(hostname=vServer.server_ip,port=1722)
                         if mode == 'openvswitch':
                             OVS = SSH.genre(model='ovs') 
                             OVS.ovsDelBr(brName=netkName)
