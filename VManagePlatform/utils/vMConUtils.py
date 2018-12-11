@@ -211,7 +211,7 @@ class wvmConnection(object):
 
     def __connect_ssh(self):
         uri = 'qemu+ssh://%s@%s/system' % (self.login, self.host)
-
+        print(uri)
         try:
             self.connection = libvirt.open(uri)
             self.last_error = None
