@@ -481,6 +481,7 @@ class VMServer(VMBase):
             for vM in vMdisk:
                 pool = self.conn.storagePoolLookupByName(vM)
                 stgvols = pool.listVolumes()
+                print("stgvols",stgvols)
                 for stgvolname in stgvols:
                     volData = dict()
                     stgvol = pool.storageVolLookupByName(stgvolname)
