@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ''' celery config '''
 djcelery.setup_loader()
-BROKER_URL = 'redis://192.168.1.233:6379/0'
+BROKER_URL = 'redis://127.0.0.1/0'
 CELERY_RESULT_BACKEND = 'djcelery.backends.database.DatabaseBackend'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'pickle'
@@ -115,8 +115,8 @@ DATABASES = {
         'ENGINE':'django.db.backends.mysql',
         'NAME':'vmanage',
         'USER':'root',
-        'PASSWORD':'welliam',
-        'HOST':'192.168.1.201'
+        'PASSWORD':'',
+        'HOST':'127.0.0.1'
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
@@ -142,11 +142,11 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-     '/opt/apps/VManagePlatform/VManagePlatform/static/',
+     '/project/VManagePlatform/VManagePlatform/static/',
     )
 TEMPLATE_DIRS = (
 #     os.path.join(BASE_DIR,'mysite\templates'),
-    '/opt/apps/VManagePlatform/VManagePlatform/templates/',
+    '/project/VManagePlatform/VManagePlatform/templates/',
 )
 
 
