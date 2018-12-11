@@ -309,6 +309,7 @@ class wvmConnectionManager(object):
         host = unicode(host)
         login = unicode(login)
         passwd = unicode(passwd) if passwd is not None else None
+        print("conn",conn)
         connection = self._search_connection(host, login, passwd, conn)
         if (connection is None):
             self._connections_lock.acquireWrite()
