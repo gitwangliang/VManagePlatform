@@ -1,3 +1,4 @@
+#_*_ coding:utf-8_*_
 import paramiko
 
 ssh = paramiko.SSHClient()
