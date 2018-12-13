@@ -34,7 +34,7 @@ def configNetwork(request,id):
             VMS = LibvirtManage(vServer.server_ip,vServer.username, vServer.passwd, vServer.vm_type)
             NETWORK = VMS.genre(model='network')
             if request.POST.get('network-mode') == 'bridge':
-                SSH = BRManage(hostname=vServer.server_ip,port=1722)
+                SSH = BRManage(hostname=vServer.server_ip,port=22222)
                 OVS = SSH.genre(model='ovs')
                 BRCTL = SSH.genre(model='brctl')
                 print("===============",NETWORK,OVS)
