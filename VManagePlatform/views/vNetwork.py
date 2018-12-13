@@ -37,6 +37,7 @@ def configNetwork(request,id):
                 SSH = BRManage(hostname=vServer.server_ip,port=1722)
                 OVS = SSH.genre(model='ovs')
                 BRCTL = SSH.genre(model='brctl')
+                print("===============",NETWORK,OVS)
                 if NETWORK and OVS:
                     status = NETWORK.getNetwork(netk_name=request.POST.get('bridge-name'))
                     if status:
