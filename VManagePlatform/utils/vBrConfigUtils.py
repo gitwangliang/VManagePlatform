@@ -10,10 +10,11 @@ class SSHBase(object):
 
     def ssh(self):
         try:
+            private_key = paramiko.RSAKey.from_private_key_file('/root/.ssh/id_rsa_ssh')
             self.ssh = paramiko.SSHClient()
             self.ssh.load_system_host_keys() ####获取ssh key密匙，默认在~/.ssh/knows_hosts
             self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            self.ssh.connect(hostname = self.hostname,port=self.port) 
+            self.ssh.connect(hostname = self.hostname,port=self.port,username="root",pkey=private_key)
         except Exception,e:
             self.ssh = False 
         return self.ssh       
