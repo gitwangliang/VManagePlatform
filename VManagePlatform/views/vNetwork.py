@@ -102,7 +102,7 @@ def handleNetwork(request,id):
                 mode = NETWORK.getNetworkType(netk_name=netkName).get('mode')
                 if op == 'delete':
                     try:
-                        SSH = BRManage(hostname=vServer.server_ip,port=1722)
+                        SSH = BRManage(hostname=vServer.server_ip,port=22)
                         if mode == 'openvswitch':
                             OVS = SSH.genre(model='ovs') 
                             OVS.ovsDelBr(brName=netkName)
