@@ -12,10 +12,9 @@ class SSHBase(object):
         try:
             # private_key = paramiko.RSAKey.from_private_key_file('/root/.ssh/id_rsa_ssh')
             self.ssh = paramiko.SSHClient()
-            self.ssh.load_system_host_keys() ####获取ssh key密匙，默认在~/.ssh/knows_hosts
+            # self.ssh.load_system_host_keys() ####获取ssh key密匙，默认在~/.ssh/knows_hosts
             self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            # self.ssh.connect(hostname = self.hostname,port=self.port,username="root",pkey=private_key)
-            self.ssh.connect(hostname = self.hostname,port=self.port)
+            self.ssh.connect(hostname = self.hostname,port=self.port,username="root",password="123456")
         except Exception,e:
             self.ssh = False 
         return self.ssh       
@@ -187,8 +186,10 @@ class BrctlConfig(SSHBase):
         '''添加网桥'''
         try:
             data = dict()
-            if stp:cmd = 'virsh iface-bridge {iface} {brName}'.format(iface=iface,brName=brName)
-            else:cmd = 'virsh iface-bridge {iface} {brName} --no-stp'.format(iface=iface,brName=brName)  
+            if stp:
+                cmd = 'virsh iface-bridge {iface} {brName}'.format(iface=iface,brName=brName)
+            else:
+                cmd = 'virsh iface-bridge {iface} {brName} --no-stp'.format(iface=iface,brName=brName)
             stdin,stdout,stderr = self.ssh.exec_command(cmd)              
             data["stdout"] = ''.join(stdout.readlines()).replace("\n","<br>")
             exit_status = stdout.channel.recv_exit_status() 

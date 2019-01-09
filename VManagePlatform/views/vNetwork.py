@@ -34,8 +34,8 @@ def configNetwork(request,id):
             VMS = LibvirtManage(vServer.server_ip,vServer.username, vServer.passwd, vServer.vm_type)
             NETWORK = VMS.genre(model='network')
             if request.POST.get('network-mode') == 'bridge':
-                vServer.server_ip = "10.10.10.27" #测试设置
-                SSH = BRManage(hostname=vServer.server_ip,port=22222)
+                vServer.server_ip = "127.0.0.1" #测试设置
+                SSH = BRManage(hostname=vServer.server_ip,port=22)
                 print(SSH.ssh)
                 OVS = SSH.genre(model='ovs')
                 BRCTL = SSH.genre(model='brctl')
@@ -53,8 +53,10 @@ def configNetwork(request,id):
                             if status.get('status') == 'success':
                                 if request.POST.get('stp') == 'on':status = OVS.ovsConfStp(brName=request.POST.get('bridge-name'))#是否开启stp
                         elif request.POST.get('mode') == 'brctl':
-                            if request.POST.get('stp') == 'on':status = BRCTL.brctlAddBr(iface=request.POST.get('interface'),brName=request.POST.get('bridge-name'),stp='on')
-                            else:status = BRCTL.brctlAddBr(iface=request.POST.get('interface'),brName=request.POST.get('bridge-name'),stp=None)
+                            if request.POST.get('stp') == 'on':
+                                status = BRCTL.brctlAddBr(iface=request.POST.get('interface'),brName=request.POST.get('bridge-name'),stp='on')
+                            else:
+                                status = BRCTL.brctlAddBr(iface=request.POST.get('interface'),brName=request.POST.get('bridge-name'),stp=None)
                         SSH.close()
                         if  status.get('status') == 'success':                          
                             XML = CreateBridgeNetwork(name=request.POST.get('bridge-name'),

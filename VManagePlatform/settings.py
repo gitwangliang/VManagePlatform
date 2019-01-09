@@ -115,7 +115,7 @@ DATABASES = {
         'ENGINE':'django.db.backends.mysql',
         'NAME':'vmanage',
         'USER':'root',
-        'PASSWORD':'',
+        'PASSWORD':'111111',
         'HOST':'127.0.0.1'
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
